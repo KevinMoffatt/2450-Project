@@ -28,6 +28,10 @@ Cr = .028992;           %Rolling friction coefficient
 muS = .5;            %Coefficient of static friction
 mw = .1;            %Wheel mass (kg)
 g = 9.81;           %Acceleration due to gravity in m/s^2
+deadWeight = linspace(0,3.5,10);  %Adding weight to the train (kg)
 
 %Test Parameter Matrix Set Up Function
 ParameterMatrix = ParameterMatrixSetUp(Lt,Do,pt,P0,rg,Lr,Dp,pa,Patm,Cd,Cr,muS,Dw,mw);
+
+%Test Train Optimization function
+Optimal = TrainOptimization(ParameterMatrix);
