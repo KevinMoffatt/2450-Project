@@ -18,7 +18,7 @@ P0 = Pgage + Patm;  %Initial total pressure in the tank (Pa)
 Dw = 2.25 * .0254;  %Wheel diameter (in to m)
 rw = Dw/2;   %Wheel radius (inches to m)
 rg = [.01:.001:rw];   %Pinion gear radius (m)
-Lr = [.01:.001:1.5];     %Piston stroke length (m)
+Lr = linspace(.01,1.5,92);     %Piston stroke length (m)
 Lp = 2 * Lr;        %Length of piston (m)
 Dp = [5/16:1/16:6] * .0254;   %Piston diameter (in to m)
 
@@ -30,4 +30,4 @@ mw = .1;            %Wheel mass (kg)
 g = 9.81;           %Acceleration due to gravity in m/s^2
 
 Di = D0/1.3;        %Inside diameter of the pressure tank pipe (m)
-Mp = 1250*((pi/4) * Dp^2 * Lp); %Mass of the pneumatic piston
+Mp = 1250*((pi/4) * Dp.^2 .* Lp); %Mass of the pneumatic piston
