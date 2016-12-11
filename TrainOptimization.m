@@ -59,9 +59,9 @@ for i = 1:rows
     if ((x(end) < 14) && (x(end) > 12)) && (t(end) < timeMin)     %if the train stops in the required distance (in between 12 and 14 m from start) and the time is less than the 
         %previous minimum time then set optimal values to current set
         timeMin = t(end);   %set minimum time to current end time
-        tOptimal = t;   %set optimal values to current values and parameters
-        xOptimal = x;
-        VOptimal = V;
+        tOptimal = t(end);   %set optimal values to current values and parameters
+        xOptimal = x(end);
+        VOptimal = V(end);
         paramOptimal = ParameterMatrix(i,:);
         OptimalSet = [tOptimal xOptimal VOptimal paramOptimal]; %stores optimal vectors into optimal matrix
     end
