@@ -13,11 +13,12 @@ Cd = p(6);      %drag coefficient
 Cr = p(7);      %rolling resistance coefficient
 Lr = p(8);      %piston stroke length (m)
 g = p(9);       %accelertion due to gravity (m/s^2)
-rp = p(10);      %pinion gear radius (m)
+rp = p(10);     %pinion gear radius (m)
 rw = p(11);     %wheel radius (m)
 P0 = p(12);     %initial tank pressure (pa)
 Dp = p(13);     %piston diameter (inner m)
 A = p(14);      %frontal area (m)
+Patm = p(15);   %atmospheric pressure (Pa)
 
 Vol0 = pi/4 * D^2 * Lt;  %volume of tank
 Ap = pi/4 * Dp^2;         %area of piston head
@@ -29,7 +30,7 @@ t(1) = 0;   %Initial time is 0
 
 %Acceleration
 f1 = @(tt,xx,vv) vv;
-f2 = @(tt,xx,vv) (m + mw/2)^(-1) * (rp*Ap/rw * (P0*Vol0/(Vol0+Ap*rp/rw*(xx)))...
+f2 = @(tt,xx,vv) (m + mw/2)^(-1) * (rp*Ap/rw * ((P0*Vol0/(Vol0+Ap*rp/rw*(xx)))-Patm)...
     -1/2*Cd*rho*A*(vv)^2 - Cr*m*g);
 %Deceleration
 f3 = @(tt,xx,vv) vv;
