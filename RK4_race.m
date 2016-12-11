@@ -68,8 +68,6 @@ while (true)
     
     i = i+1;    %increment variable
 end
-t = t(end);
-x = x(end);
-V = V(end);
+
 end
 
