@@ -26,6 +26,12 @@ for i = 1:rows
     Dw = ParameterMatrix(i,13);
     mw = ParameterMatrix(i,14);
     
+    
+        %Calculate additional variables needed for RK4
+    A = 2*pi*(Do/2)^2;  %assume half sphere front cap - SA = 2*pi*r^2
+    volTrain = pi/4*Lt*(Do^2 - Di^2) + pi/6*(Do^3 - Di^3);   %volume of the train components - assume hollow cylinder with two half sphere end caps
+    m = pt*volTrain + pa*Vol0 + mw;   %mass of train is the density of material multiplied by 
+    g = 9.81;   %acceleration due to gravity (9.81 m/s)
 
     %Calculate wheel slip conditions: occurs if Ft > us*m*g
     x = 0;  %check at begining when x = 0 - when max Ft occurs
@@ -40,12 +46,7 @@ for i = 1:rows
         continue;   %if wheel slip will occur, skip running RK4 to save 
         %computation time - this will not be a possible final combination of parameters
     end
-    
-    %Calculate additional variables needed for RK4
-    A = 2*pi*(Do/2)^2;  %assume half sphere front cap - SA = 2*pi*r^2
-    volTrain = pi/4*Lt*(Do^2 - Di^2) + pi/6*(Do^3 - Di^3);   %volume of the train components - assume hollow cylinder with two half sphere end caps
-    m = pt*volTrain + pa*Vol0 + mw;   %mass of train is the density of material multiplied by 
-    g = 9.81;   %acceleration due to gravity (9.81 m/s)
+   
     
     %Put all paramters in vector to pass to RK4
     p = [m,mw,Do,Lt,pa,Cd,Cr,Lr,g,rg,rw,P0,Dp,A,Patm];
