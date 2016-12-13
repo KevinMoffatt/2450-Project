@@ -30,7 +30,7 @@ t(1) = 0;   %Initial time is 0
 
 %Acceleration
 f1 = @(tt,xx,vv) vv;
-f2 = @(tt,xx,vv) (m + mw/2)^(-1) * (rp*Ap/rw * ((P0*Vol0/(Vol0+Ap*rp/rw*(xx)))-Patm)...
+f2 = @(tt,xx,vv) (m + mw)^(-1) * (rp*Ap/rw * ((P0*Vol0/(Vol0+Ap*rp/rw*(xx)))-Patm)...
     -1/2*Cd*rho*A*(vv)^2 - Cr*m*g);
 %Deceleration
 f3 = @(tt,xx,vv) vv;
